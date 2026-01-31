@@ -1,8 +1,9 @@
 from threading import Thread
 from customtkinter import *
-from modules import *
 from CTkMessagebox import CTkMessagebox as Messagebox
-
+import time
+from modules.utils import *
+from modules.gvar import calendar
 class TaskRemover(CTkToplevel):
     selected = None
 

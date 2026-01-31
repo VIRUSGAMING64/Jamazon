@@ -26,21 +26,22 @@ class TaskCreator(CTkToplevel):
 
         self.begin_time.pack(pady=20)
         self.end_time.pack(pady=20)
+
         self.begin_time_label.pack(pady=0)
         self.end_time_label.pack(pady=0)
-
+        
         self.begin_time.place(x=self.x_size - 200 - 200, y=0)
         self.begin_time_label.place(x=self.x_size - 275- 200, y=0)
 
         self.begin_time.bind("<Return>", lambda event: "break")
         self.end_time.bind("<Return>", lambda event: "break")
-
-
+        
         self.end_time.place(x=self.x_size - 200- 200, y=28)
         self.end_time_label.place(x=self.x_size - 265- 200, y=28)
-
+        
         self.begin_time.insert("1.0", start_time.replace('T', ' AT '))
         self.end_time.insert("1.0", start_time.replace('T', ' AT '))
+
         """Show resources that this event needs."""
         self.tasks = CTkComboBox(
             self,
@@ -58,7 +59,6 @@ class TaskCreator(CTkToplevel):
         self.dependency_label.pack()
         self.dependency_label.place(x=0, y=90)
 
-
         """Buttons."""
         self.b_add = CTkButton(self, text="Add this event", command=self.add_event)
         self.b_add.pack()
@@ -70,11 +70,11 @@ class TaskCreator(CTkToplevel):
         self.adjust_button.place(x=70, y=self.y_size - 60)
 
         """Notes textbox"""
-
         self.notes = CTkTextbox(self,height = self.y_size,width =200)
         self.notes.insert("1.0","Task notes")
         self.notes.pack()
         self.notes.place(x = 280, y = 0)
+
 
     def _get_deps(self, selected):
         deps = []
@@ -103,7 +103,6 @@ class TaskCreator(CTkToplevel):
         self.dependency_label.configure(text=org + ":\n" + ne)
         return deps
 
-
     def __suggest(self, l: int, r: int, resources: list) -> list:
         print("running...")
         L = calendar.suggest_brute_lr(l, r, resources)
@@ -129,6 +128,7 @@ class TaskCreator(CTkToplevel):
         if begin >= end:
             self.show_invalid("[begin >= end]")
             return False
+        
         selected_task = self.tasks.get()
         if (selected_task == "Select a task"):
             Messagebox(
@@ -138,11 +138,11 @@ class TaskCreator(CTkToplevel):
             return
         
         res = self._get_deps(selected_task)
-        l, r = self.__suggest(tominute(begin), tominute(end), res)
-        l=str(l.isoformat().replace('T', ' AT ').split(".")[0])
-        r=str(r.isoformat().replace('T', ' AT ').split(".")[0])
-        l=l.rsplit(":",1)[0]
-        r=r.rsplit(":",1)[0]
+        l,r = self.__suggest(tominute(begin), tominute(end), res)
+        l   = str(l.isoformat().replace('T', ' AT ').split(".")[0])
+        r   = str(r.isoformat().replace('T', ' AT ').split(".")[0])
+        l   = l.rsplit(":",1)[0]
+        r   = r.rsplit(":",1)[0]
         
         print(l)
         print(r)
@@ -153,7 +153,6 @@ class TaskCreator(CTkToplevel):
         self.begin_time.insert("1.0", l)
         self.end_time.insert("1.0", r)
         return True
-        
 
     def _get_tasks(self) -> list:
         tasks = []
@@ -161,7 +160,6 @@ class TaskCreator(CTkToplevel):
             tasks.append(x)
         tasks.sort()
         return tasks
-    
 
     def show_invalid(self, data):
         Messagebox(
@@ -174,11 +172,11 @@ class TaskCreator(CTkToplevel):
 
 
     def _add_event(self):
-        begin = self.begin_time.get("1.0","19.0").replace(" AT ","T").replace("\n","")
-        end = self.end_time.get("1.0","19.0").replace(" AT ","T").replace("\n","")
-        notes = self.notes.get("1.0","end")
-        valid = CheckISODate(begin)
-        valid *= CheckISODate(end)
+        begin   = self.begin_time.get("1.0","19.0").replace(" AT ","T").replace("\n","")
+        end     = self.end_time.get("1.0","19.0").replace(" AT ","T").replace("\n","")
+        notes   = self.notes.get("1.0","end")
+        valid   = CheckISODate(begin)
+        valid  *= CheckISODate(end)
     
         if valid == 0:
             self.show_invalid("date")
@@ -217,8 +215,9 @@ class TaskCreator(CTkToplevel):
             message.get()
             return False
         
-        added = calendar.add_event(new)    
+        added = calendar.add_event(new)
         calendar.save_json_data()
+        if added: Messagebox(self,200,200,"Added", "Task added successfully !")
         print(f"added: [{added}]")
         return added
     
@@ -239,8 +238,8 @@ class TaskCreator(CTkToplevel):
         elif response == "Accept":
             added = self._add_event()
 
-        if added:
-            return True
-        else:
-            Messagebox(self, message="Not added")
+        if not added:
+            Messagebox(self,200,200,"Problem adding", message="Not added task")
             return False
+    
+        return added

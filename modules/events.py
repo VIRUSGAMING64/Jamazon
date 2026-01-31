@@ -1,4 +1,4 @@
-from modules.handlers import *
+from modules.iohandler import *
 
 class event(BasicHandler):
     next = None

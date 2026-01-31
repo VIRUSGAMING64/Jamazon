@@ -33,14 +33,8 @@ class Calendar(BasicHandler):
         tmp.write(data)
         tmp.close()
 
-
-    def is_running(self,ev):
-        return self.inqueue.get(ev, False)
-
-    
     def list_events(self): 
         return self.events
-
 
     def load_used_resources(self, filename):
         self.used_resources = self._load_json(filename)
@@ -108,7 +102,7 @@ class Calendar(BasicHandler):
                 return False   
         except Exception as e:
             log("error checking available resource: ", str(e))
-            return True
+            return False
         return True
 
 

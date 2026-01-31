@@ -3,10 +3,15 @@ from modules import *
 
 set_appearance_mode("dark")
 
+
 class app(CTk):
+    """
+    This is a main window
+    """
 
     def __init__(self):
         super().__init__()
+        """construction all buttons"""
 
         self.pack_propagate(False)
         self.title("Jamazon - tasks administrator")
@@ -74,14 +79,6 @@ class app(CTk):
         else:
             log("window is None, can't kill it")
 
-
-    def update(self):
-        try:
-            self.currents.configure(values = build_event_option_labels(calendar.events[:20]))    
-        except Exception as e:
-            log(str(e) + " in bar updater ")
-
-
     def open_event_creator(self):
         self.kill_window(self.ev_creator)
         self.ev_creator = EventCreator()
@@ -116,11 +113,6 @@ class app(CTk):
         self.kill_window(self.ev_shower)
         self.ev_shower = EventShower(calendar.events)
 
-    def updater(self):
-        while True:
-            self.update()
-            time.sleep(3)
-
     def on_closing(self):
         self.kill_window(self.task_creator)
         self.kill_window(self.task_remover)
@@ -139,4 +131,3 @@ calendar.remove_old_events()
 APP = app()
 APP.resizable(False,False)
 APP.mainloop()
-print("don't end application")

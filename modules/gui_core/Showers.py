@@ -17,7 +17,11 @@ class parameter:
         else:
             for i in self.data:
                 s += " " + str(i)
-        CTkMessagebox(title="Not use with", message=s)
+        titl = "Not use with"
+        if s == "":
+            titl = "Usable" 
+            s = "Usable with any resource"
+        CTkMessagebox(title=titl, message=s)
 
 
 class EventShower(CTkToplevel):
@@ -27,13 +31,11 @@ class EventShower(CTkToplevel):
         self.resizable(False, False)
         self.title("event shower")
         self.geometry("600x500")
-        
+
         self.scrollable_frame = CTkScrollableFrame(master=self, width=200, height=300, label_text="events running")
         self.scrollable_frame.pack(pady=20, padx=20, fill="both", expand=True)
         self.buttons = []
         
-        #CTkMessagebox(self,title="ERROR")
-
         for i in range(len(event_list)):
             data = parameter()
             data.data = event_list[i]
@@ -48,7 +50,6 @@ class EventShower(CTkToplevel):
         self.horizontal_frame = CTkScrollableFrame(master=self, orientation="horizontal", height=50)
         self.horizontal_frame.pack(pady=10, fill="x")
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
-
 
     def on_closing(self):
         self.destroy()

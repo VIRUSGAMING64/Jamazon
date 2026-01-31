@@ -8,10 +8,10 @@ class BasicHandler:
     """
     this class is a base of IO in files
     """
-
-    resources = {}
-    chunk_size = 65535
-    res_path = "./templates/resources.json"
+    def __init__(self, res_path="./templates/resources.json"):     
+        self.resources = {}
+        self.chunk_size = 65535
+        self.res_path = res_path
 
     def _load_json(self,filename):
         filename = os.path.realpath(filename)

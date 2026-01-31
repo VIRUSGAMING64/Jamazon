@@ -1,3 +1,9 @@
+2.10.4.0
+Changed name "Handlers" to "iohandler"
+Removed is_running method to Calendar class (unused)
+Fix error in check_available now return false on error
+Added MessageBox on added event
+Fixed minor error in parameter class
 2.10.3.0
 Removed unused tools
 2.10.2.0
