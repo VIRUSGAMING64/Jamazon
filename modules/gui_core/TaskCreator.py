@@ -9,7 +9,7 @@ class TaskCreator(CTkToplevel):
     def __init__(self):
         super().__init__()
         self.after(100, self.lift)  # Ensures that the window appears in front on Windows
-        self.title("TASK ADDER")
+        self.title("Task Creator")
         self.x_size = 480
         self.y_size = 300
         self.geometry(f"{self.x_size}x{self.y_size}")

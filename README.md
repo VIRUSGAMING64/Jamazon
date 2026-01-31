@@ -89,13 +89,13 @@ Jamazon/
 │   ├── calendar.py     # Calendar logic and availability
 │   ├── events.py       # Event class definition and validations
 │   ├── gvar.py         # Global variables
-│   ├── handlers.py     # Base handlers and utilities
+│   ├── iohandler.py    # Base handlers and utilities
 │   ├── SegTree.py      # Segment Tree implementation
 │   ├── utils.py        # General utility functions
 │   └── gui_core/       # 🎨 Graphical Interface Components
 │       ├── __init__.py
 │       ├── EventDefiner.py   # Window to define new events
-│       ├── EventShower.py    # Event viewer
+│       ├── Showers.py        # Event viewer
 │       ├── ResAdder.py       # Window to add resources
 │       ├── TaskCreator.py    # Window to create tasks
 │       └── TaskRemover.py    # Window to delete tasks

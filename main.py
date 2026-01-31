@@ -87,7 +87,7 @@ class app(CTk):
 
     def open_res_adder(self):
         self.kill_window(self.res_adder)
-        self.res_adder = RessAdder()
+        self.res_adder = ResAdder()
         self.res_adder.resizable(False,False)
 
 

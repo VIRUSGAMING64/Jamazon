@@ -17,7 +17,7 @@ class parameter:
         else:
             for i in self.data:
                 s += " " + str(i)
-        titl = "Not use with"
+        titl = "Conflicts with"
         if s == "":
             titl = "Usable" 
             s = "Usable with any resource"
@@ -29,10 +29,10 @@ class EventShower(CTkToplevel):
         super().__init__()
         self.after(1001, self.lift)
         self.resizable(False, False)
-        self.title("event shower")
+        self.title("Event Viewer")
         self.geometry("600x500")
 
-        self.scrollable_frame = CTkScrollableFrame(master=self, width=200, height=300, label_text="events running")
+        self.scrollable_frame = CTkScrollableFrame(master=self, width=200, height=300, label_text="Events Running")
         self.scrollable_frame.pack(pady=20, padx=20, fill="both", expand=True)
         self.buttons = []
         

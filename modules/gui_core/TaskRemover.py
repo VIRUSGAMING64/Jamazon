@@ -27,7 +27,7 @@ class TaskRemover(CTkToplevel):
             y = self.y_size - self.remove_button._current_height
         )
         
-        self.info = CTkLabel(self,text="INFORMATION")
+        self.info = CTkLabel(self,text="Information")
         self.info.pack()
         self.info.place(y = 28 , x = 0)
 

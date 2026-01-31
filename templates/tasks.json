@@ -1,293 +1,12 @@
 {
-   "entrega_moto": {
-      "resources": [
-         {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
-            "name": "moto",
-            "count": 1
-         },
-         {
-            "name": "casco",
-            "count": 1
-         },
-         {
-            "name": "mochila_termica",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "entrega_bici": {
-      "resources": [
-         {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
-            "name": "bicicleta",
-            "count": 1
-         },
-         {
-            "name": "casco",
-            "count": 1
-         },
-         {
-            "name": "mochila_termica",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "entrega_furgoneta": {
-      "resources": [
-         {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
-            "name": "furgoneta",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "entrega_coche": {
-      "resources": [
-         {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
-            "name": "coche",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "entrega_patinete": {
-      "resources": [
-         {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
-            "name": "patinete_electrico",
-            "count": 1
-         },
-         {
-            "name": "casco",
-            "count": 1
-         },
-         {
-            "name": "mochila_termica",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "cocinar_hamburguesa": {
-      "resources": [
-         {
-            "name": "cocinero",
-            "count": 1
-         },
-         {
-            "name": "plancha",
-            "count": 1
-         },
-         {
-            "name": "mesa_preparacion",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "cocinar_pizza": {
-      "resources": [
-         {
-            "name": "cocinero",
-            "count": 1
-         },
-         {
-            "name": "horno",
-            "count": 1
-         },
-         {
-            "name": "mesa_preparacion",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "cocinar_sushi": {
-      "resources": [
-         {
-            "name": "cocinero",
-            "count": 1
-         },
-         {
-            "name": "mesa_preparacion",
-            "count": 1
-         },
-         {
-            "name": "guantes",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "preparar_ensalada": {
-      "resources": [
-         {
-            "name": "ayudante_cocina",
-            "count": 1
-         },
-         {
-            "name": "mesa_preparacion",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "preparar_postre": {
-      "resources": [
-         {
-            "name": "ayudante_cocina",
-            "count": 1
-         },
-         {
-            "name": "nevera",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "limpiar_cocina": {
-      "resources": [
-         {
-            "name": "personal_limpieza",
-            "count": 1
-         },
-         {
-            "name": "guantes",
-            "count": 1
-         }
-      ],
-      "without": [
-         "cocinero"
-      ]
-   },
-   "limpiar_salon": {
-      "resources": [
-         {
-            "name": "personal_limpieza",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "gestionar_pedidos_tel": {
+   "abrir_local": {
       "resources": [
          {
             "name": "gerente",
             "count": 1
          },
          {
-            "name": "telefono",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "gestionar_pedidos_web": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "ordenador_pedidos",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "cobrar_caja": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "caja_registradora",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "cobrar_tarjeta": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "datafono",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "inventario_semanal": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "ordenador_pedidos",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "mantenimiento_motos": {
-      "resources": [
-         {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
-            "name": "kit_herramientas",
-            "count": 1
-         },
-         {
-            "name": "moto",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "compra_insumos": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "furgoneta",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "apertura_local": {
-      "resources": [
-         {
-            "name": "gerente",
+            "name": "sistema_pedidos",
             "count": 1
          },
          {
@@ -295,93 +14,211 @@
             "count": 1
          }
       ],
-      "without": []
+      "without": [
+         "ayudante_cocina",
+         "cocinero",
+         "personal_limpieza",
+         "repartidor"
+      ]
    },
-   "cierre_local": {
+   "preparar_comida_completa": {
       "resources": [
          {
-            "name": "gerente",
+            "name": "cocinero",
             "count": 1
-         }
-      ],
-      "without": []
-   },
-   "repartir_folletos": {
-      "resources": [
+         },
          {
             "name": "ayudante_cocina",
             "count": 1
          },
          {
-            "name": "folletos",
-            "count": 50
-         }
-      ],
-      "without": []
-   },
-   "gestionar_redes_sociales": {
-      "resources": [
-         {
-            "name": "gerente",
+            "name": "horno_profesional",
             "count": 1
          },
          {
-            "name": "anuncios_redes",
+            "name": "freidora_industrial",
             "count": 1
          },
          {
-            "name": "ordenador_pedidos",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "entrevistar_candidatos": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
+            "name": "ingredientes_frescos",
+            "count": 5
          },
          {
-            "name": "zona_descanso",
+            "name": "ingredientes_secos",
+            "count": 3
+         },
+         {
+            "name": "mesa_preparacion",
             "count": 1
          }
       ],
-      "without": []
+      "without": [
+         "equipo_limpieza",
+         "gerente",
+         "personal_limpieza",
+         "repartidor",
+         "uniforme_limpieza",
+         "uniforme_repartidor"
+      ]
    },
-   "formacion_empleados": {
+   "entrega_en_moto": {
       "resources": [
          {
-            "name": "gerente",
+            "name": "repartidor",
             "count": 1
          },
          {
-            "name": "zona_descanso",
+            "name": "moto",
             "count": 1
          },
          {
-            "name": "manual_empleado",
+            "name": "bebidas_surtidas",
+            "count": 2
+         },
+         {
+            "name": "cajas_envio",
+            "count": 1
+         }
+      ],
+      "without": [
+         "ayudante_cocina",
+         "bicicleta",
+         "cocinero",
+         "furgoneta",
+         "gerente",
+         "personal_limpieza",
+         "uniforme_chef",
+         "uniforme_limpieza"
+      ]
+   },
+   "entrega_con_furgoneta": {
+      "resources": [
+         {
+            "name": "repartidor",
+            "count": 1
+         },
+         {
+            "name": "furgoneta",
+            "count": 1
+         },
+         {
+            "name": "sistema_gps",
+            "count": 1
+         },
+         {
+            "name": "cajas_envio",
             "count": 5
          }
       ],
-      "without": []
+      "without": [
+         "ayudante_cocina",
+         "bicicleta",
+         "cocinero",
+         "gerente",
+         "moto",
+         "personal_limpieza",
+         "uniforme_chef",
+         "uniforme_limpieza"
+      ]
    },
-   "limpiar_bano": {
+   "gestionar_pedidos_online": {
+      "resources": [
+         {
+            "name": "gerente",
+            "count": 1
+         },
+         {
+            "name": "sistema_pedidos",
+            "count": 1
+         }
+      ],
+      "without": [
+         "ayudante_cocina",
+         "cocinero",
+         "personal_limpieza",
+         "repartidor"
+      ]
+   },
+   "limpiar_cocina_completa": {
       "resources": [
          {
             "name": "personal_limpieza",
             "count": 1
          },
          {
-            "name": "bano",
+            "name": "equipo_limpieza",
             "count": 1
          },
          {
-            "name": "guantes",
+            "name": "agua",
+            "count": 5
+         }
+      ],
+      "without": [
+         "ayudante_cocina",
+         "cocinero",
+         "gerente",
+         "guantes_cocina",
+         "kit_herramientas",
+         "repartidor",
+         "uniforme_chef",
+         "uniforme_repartidor"
+      ]
+   },
+   "contabilidad_y_caja": {
+      "resources": [
+         {
+            "name": "gerente",
+            "count": 1
+         },
+         {
+            "name": "ordenador_gerente",
+            "count": 1
+         },
+         {
+            "name": "caja_registradora",
+            "count": 1
+         },
+         {
+            "name": "sistema_pedidos",
             "count": 1
          }
       ],
-      "without": []
+      "without": [
+         "ayudante_cocina",
+         "cocinero",
+         "personal_limpieza",
+         "repartidor"
+      ]
+   },
+   "formacion_seguridad": {
+      "resources": [
+         {
+            "name": "gerente",
+            "count": 1
+         },
+         {
+            "name": "cocinero",
+            "count": 1
+         },
+         {
+            "name": "zona_descanso",
+            "count": 1
+         },
+         {
+            "name": "carnet_manipulador",
+            "count": 1
+         }
+      ],
+      "without": [
+         "ayudante_cocina",
+         "cocinero",
+         "gerente",
+         "personal_limpieza",
+         "repartidor",
+         "uniforme_limpieza",
+         "uniforme_repartidor"
+      ]
    },
    "organizar_almacen": {
       "resources": [
@@ -392,85 +229,58 @@
          {
             "name": "almacen",
             "count": 1
-         }
-      ],
-      "without": []
-   },
-   "reponer_bebidas": {
-      "resources": [
-         {
-            "name": "ayudante_cocina",
-            "count": 1
          },
          {
-            "name": "nevera",
-            "count": 1
+            "name": "cajas_envio",
+            "count": 3
          },
          {
-            "name": "bebidas",
+            "name": "bolsas_envio",
+            "count": 3
+         },
+         {
+            "name": "ingredientes_secos",
             "count": 10
          }
       ],
-      "without": []
+      "without": [
+         "equipo_limpieza",
+         "gerente",
+         "personal_limpieza",
+         "repartidor",
+         "uniforme_limpieza",
+         "uniforme_repartidor"
+      ]
    },
-   "revision_extintores": {
+   "servicio_completo_bicicleta": {
       "resources": [
          {
-            "name": "gerente",
+            "name": "repartidor",
             "count": 1
          },
          {
-            "name": "extintor",
+            "name": "bicicleta",
             "count": 1
+         },
+         {
+            "name": "kit_herramientas",
+            "count": 1
+         },
+         {
+            "name": "cajas_envio",
+            "count": 2
          }
       ],
-      "without": []
-   },
-   "curso_manipulacion_alimentos": {
-      "resources": [
-         {
-            "name": "cocinero",
-            "count": 1
-         },
-         {
-            "name": "carnet_manipulador",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "pagar_proveedores": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "ordenador_pedidos",
-            "count": 1
-         },
-         {
-            "name": "internet",
-            "count": 1
-         }
-      ],
-      "without": []
-   },
-   "contabilidad_mensual": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "ordenador_pedidos",
-            "count": 1
-         },
-         {
-            "name": "caja_registradora",
-            "count": 1
-         }
-      ],
-      "without": []
+      "without": [
+         "ayudante_cocina",
+         "cocinero",
+         "equipo_limpieza",
+         "furgoneta",
+         "gerente",
+         "moto",
+         "personal_limpieza",
+         "uniforme_chef",
+         "uniforme_limpieza"
+      ]
    }
 }

@@ -2,7 +2,7 @@ from modules.gvar import *
 from customtkinter import *
 from CTkMessagebox import CTkMessagebox
 
-class RessAdder(CTkToplevel):
+class ResAdder(CTkToplevel):
     def __init__(self):
         super().__init__()
         self.after(100, self.lift)  
