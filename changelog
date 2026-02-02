@@ -1,6 +1,9 @@
+2.11.0.1
+Added new resource and task
+Added report.pdf, es and en version
 2.11.0.0
 Added new resource and task
-Added informe_es.pdf and en version
+Minor changes  in calendar and TaskCreator
 2.10.5.0
 Changed name of EventDeffiner (removed a f)
 Added complexity in event and resources
