@@ -215,11 +215,11 @@ class TaskCreator(CTkToplevel):
             message.get()
             return False
         
-        added = calendar.add_event(new)
+        added,t_res = calendar.add_event(new)
         calendar.save_json_data()
         if added: Messagebox(self,200,200,"Added", "Task added successfully !")
         print(f"added: [{added}]")
-        return added
+        return added,t_res
     
 
     def add_event(self):
@@ -232,14 +232,17 @@ class TaskCreator(CTkToplevel):
             option_2="Cancel"
         )
         response = message.get()
+        msg = "Not added task"
         if response == "Cancel":
             print("User canceled the event addition.")
             return False
         elif response == "Accept":
-            added = self._add_event()
+            added,t_res = self._add_event()
+            if not added and t_res != None:
+                msg += f", missing: {t_res}"
 
         if not added:
-            Messagebox(self,200,200,"Problem adding", message="Not added task")
+            Messagebox(self,200,200,"Problem adding", message=msg)
             return False
     
         return added

@@ -62,10 +62,6 @@ The project is built with a modular approach. The main components are detailed b
   * Represents an individual event with date, time, and necessary resources.
   * **Validation:** Checks dependencies and resource collisions upon initialization. If there is a conflict, it prevents the event creation.
 
-* **`SegTree` (in `modules/SegTree.py`)**:
-  * Implements a **Segment Tree** with *Lazy Propagation*.
-  * Used to perform efficient queries on time ranges, allowing quick verification of resource availability or usage in specific intervals.
-
 ### 2. Graphical Interface (`modules/gui_core/`)
 
 * **`EventCreator` (in `EventDefiner.py`)**: Window to enter details for new events.

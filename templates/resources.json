@@ -141,7 +141,7 @@
       ]
    },
    "gerente": {
-      "count": 1,
+      "count": 2,
       "need": [
          "ordenador_gerente",
          "telefono"
@@ -312,5 +312,10 @@
          "moto",
          "bicicleta"
       ]
+   },
+   "coca cola": {
+      "count": 10,
+      "need": [],
+      "without": []
    }
 }

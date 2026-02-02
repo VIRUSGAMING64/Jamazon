@@ -90,20 +90,20 @@ class Calendar(BasicHandler):
 
     def check_available(self, new_res: str, start: int, end: int, di , tree):
         if not (new_res in self.used_resources.keys()):
-            return True
+            return True, None
         try:
             if start not in di or end not in di:
                 log(f"check_available: keys not found - start={start} in di: {start in di}, end={end} in di: {end in di}")
-                return True 
+                return True , None
             l = di[start]
             r = di[end]
             mx = tree.query(l,r)
             if mx >= self.resources[new_res]["count"]:
-                return False   
+                return False,new_res
         except Exception as e:
             log("error checking available resource: ", str(e))
-            return False
-        return True
+            return False,None
+        return True,None
 
 
 
@@ -113,9 +113,9 @@ class Calendar(BasicHandler):
             if check == True:
                 for res in new.need_resources:
                     di,tree = self.gen_tree(res,new.start,new.end - new.start)
-                    av = self.check_available(res, new.start, new.end, di, tree)
+                    av, t_res = self.check_available(res, new.start, new.end, di, tree)
                     if av == False:
-                        return av
+                        return av,t_res
             
             self.events.append(new)
             self.inqueue[new] = True
@@ -124,11 +124,11 @@ class Calendar(BasicHandler):
                 add_to_dict(self.used_resources,[res,new.start,1])        
                 add_to_dict(self.used_resources,[res,new.end,-1])
         
-            return True
+            return True,None
         
         except Exception as e:
             log("error adding event: [unknown error]", e)
-        return False
+        return False,None
 
 
 
@@ -186,7 +186,8 @@ class Calendar(BasicHandler):
             av = True
             for res in resources:
                 di, tree = self.gen_tree(res, l, length)
-                if not self.check_available(res, l, l + length, di, tree):
+                av , t_res= self.check_available(res, l, l + length, di, tree)
+                if not av:
                     av = False
                     mx: int = 10**300
                     for x in self.list_events():

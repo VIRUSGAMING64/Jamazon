@@ -282,5 +282,22 @@
          "uniforme_chef",
          "uniforme_limpieza"
       ]
+   },
+   "Entregar coca cola": {
+      "resources": [
+         {
+            "name": "coca cola",
+            "count": 1
+         },
+         {
+            "name": "repartidor",
+            "count": 1
+         },
+         {
+            "name": "moto",
+            "count": 1
+         }
+      ],
+      "without": []
    }
 }
