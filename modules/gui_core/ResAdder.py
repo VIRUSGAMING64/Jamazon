@@ -48,7 +48,7 @@ class ResAdder(CTkToplevel):
             calendar.resources[res_name]["need"] = need
             calendar.resources[res_name]["without"] = witout
         else:
-            if calendar.resources[res_name]["count"] < abs(inc) and inc:
+            if calendar.resources[res_name]["count"] < abs(inc) and inc < 0:
                 CTkMessagebox(self,200, 200 , title="Error", message="Please enter a valid resource name and count.")
                 return False
             calendar.resources[res_name]["count"] += inc
