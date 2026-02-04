@@ -6,7 +6,8 @@ class Calendar(BasicHandler):
     
     def __init__(self,used_res = "used_resources.json", actives_ev = "actives_events.json"):
         try:
-                
+            super().__init__()
+            self._load_resources("./templates/resources.json")
             self.used_resources:dict        = {}
             self.available_tasks:dict       = {}
             self.events:list[event]         = []
