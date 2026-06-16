@@ -66,7 +66,7 @@ class TaskRemover(CTkToplevel):
                 self, 300, 300,"ERROR", "[ERROR] Select one event"
             )
             return
-        
+        print(self.selected)
         calendar.remove(self.selected)
         calendar.save_json_data()
         sl = self.selected

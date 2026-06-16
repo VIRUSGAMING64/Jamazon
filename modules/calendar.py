@@ -139,13 +139,11 @@ class Calendar(BasicHandler):
             log("error adding event: [unknown error]", e)
         return False,None
 
-
-
     def remove(self,index):
         deleted = self.events.pop(index)
-        for res in deleted.need_resources:
-            add_to_dict(self.used_resources,[res,deleted.start, -1])
-            add_to_dict(self.used_resources,[res,deleted.end, 1])
+        for res, cnt in deleted.need_resources:
+            add_to_dict(self.used_resources,[res,deleted.start, -cnt])
+            add_to_dict(self.used_resources,[res,deleted.end, cnt])
         del self.inqueue[deleted]
 
 

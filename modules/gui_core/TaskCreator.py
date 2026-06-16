@@ -116,12 +116,17 @@ class TaskCreator(CTkToplevel):
         return tmp
 
     def __suggest(self, l: int, r: int, resources: list) -> list:
-        print("running...")
-        L = calendar.suggest_brute_lr(l, r, resources)
-        if isinstance(L, str):
-            return -1,L
-        print("found...")
-        R = L + datetime.timedelta(minutes=r - l)
+        try:
+            print("running...")
+            L = calendar.suggest_brute_lr(l, r, resources)
+            if isinstance(L, str):
+                return -1,L
+            print("found...")
+            R = L + datetime.timedelta(minutes=r - l)
+        except Exception as e:
+            Messagebox(self, message="Imposible determinar un rango")
+            return -1, -1
+
         return L, R
 
 
@@ -158,6 +163,8 @@ class TaskCreator(CTkToplevel):
         
         l,r = self.__suggest(tominute(begin), tominute(end), res)
         if (l == -1):
+            if r == -1:
+                return
             Messagebox(
                 self,200,200,"No resources",
                 f"La tarea requiere mas recursos que la cantidad instalada total, agregue mas recursos ({r})"
