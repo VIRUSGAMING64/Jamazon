@@ -1,3 +1,7 @@
+2.12.0.0
+Fixed bug adding tasks 
+Fixed bug suggesting range
+changed event structures
 2.11.0.5
 Minor bug fixed in calendar.py
 2.11.0.4

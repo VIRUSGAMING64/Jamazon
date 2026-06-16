@@ -1,6 +1,6 @@
 {
    "electricidad": {
-      "count": 100,
+      "count": 1,
       "need": [],
       "without": []
    },
@@ -28,14 +28,6 @@
       ],
       "without": []
    },
-   "zona_descanso": {
-      "count": 1,
-      "need": [
-         "electricidad",
-         "agua"
-      ],
-      "without": []
-   },
    "ordenador_gerente": {
       "count": 2,
       "need": [
@@ -47,29 +39,13 @@
    "sistema_pedidos": {
       "count": 2,
       "need": [
-         "ordenador_gerente",
-         "impresora_tickets"
-      ],
-      "without": []
-   },
-   "impresora_tickets": {
-      "count": 2,
-      "need": [
-         "electricidad"
+         "ordenador_gerente"
       ],
       "without": []
    },
    "caja_registradora": {
       "count": 2,
       "need": [
-         "electricidad"
-      ],
-      "without": []
-   },
-   "sistema_gps": {
-      "count": 3,
-      "need": [
-         "internet",
          "electricidad"
       ],
       "without": []
@@ -103,16 +79,6 @@
          "uniforme_repartidor"
       ]
    },
-   "carnet_manipulador": {
-      "count": 10,
-      "need": [],
-      "without": []
-   },
-   "casco_seguridad": {
-      "count": 15,
-      "need": [],
-      "without": []
-   },
    "guantes_cocina": {
       "count": 40,
       "need": [],
@@ -141,7 +107,7 @@
       ]
    },
    "gerente": {
-      "count": 2,
+      "count": 3,
       "need": [
          "ordenador_gerente",
          "telefono"
@@ -156,8 +122,7 @@
    "cocinero": {
       "count": 5,
       "need": [
-         "uniforme_chef",
-         "carnet_manipulador"
+         "uniforme_chef"
       ],
       "without": [
          "gerente",
@@ -168,8 +133,7 @@
    "repartidor": {
       "count": 10,
       "need": [
-         "uniforme_repartidor",
-         "casco_seguridad"
+         "uniforme_repartidor"
       ],
       "without": [
          "gerente",
@@ -203,23 +167,8 @@
          "personal_limpieza"
       ]
    },
-   "horno_profesional": {
+   "horno": {
       "count": 2,
-      "need": [
-         "electricidad"
-      ],
-      "without": []
-   },
-   "freidora_industrial": {
-      "count": 2,
-      "need": [
-         "electricidad",
-         "agua"
-      ],
-      "without": []
-   },
-   "plancha_cocina": {
-      "count": 1,
       "need": [
          "electricidad"
       ],
@@ -232,14 +181,14 @@
       ],
       "without": []
    },
-   "congelador_industrial": {
+   "congelador": {
       "count": 2,
       "need": [
          "electricidad"
       ],
       "without": []
    },
-   "mesa_preparacion": {
+   "mesa": {
       "count": 4,
       "need": [],
       "without": []
@@ -248,7 +197,7 @@
       "count": 80,
       "need": [
          "nevera_cocina",
-         "congelador_industrial"
+         "congelador"
       ],
       "without": []
    },
@@ -256,13 +205,6 @@
       "count": 150,
       "need": [
          "almacen"
-      ],
-      "without": []
-   },
-   "bebidas_surtidas": {
-      "count": 120,
-      "need": [
-         "nevera_cocina"
       ],
       "without": []
    },
@@ -284,7 +226,6 @@
       "count": 5,
       "need": [
          "gasolina",
-         "casco_seguridad",
          "mochila_termica"
       ],
       "without": [
@@ -305,8 +246,7 @@
    "furgoneta": {
       "count": 2,
       "need": [
-         "gasolina",
-         "sistema_gps"
+         "gasolina"
       ],
       "without": [
          "moto",

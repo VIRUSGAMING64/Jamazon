@@ -29,10 +29,13 @@ class event(BasicHandler):
             
             self._load_resources("./templates/resources.json")
             deps = set()
-            for x in self.need_resources:
+            
+            cn = {}
+            for x,cnt in self.need_resources:
                 deps.add(x)
-           
-            for resource in self.need_resources:
+                cn[x] = cnt 
+
+            for resource,cnt in self.need_resources:
                 needed = get_sources_dependency(self.resources, resource)
                 for required in needed:
                     deps.add(required)
@@ -45,7 +48,13 @@ class event(BasicHandler):
             collisions = deps & no_use
             if len(collisions) > 0:
                 raise BaseException("invalid task, collision detected")
-            self.need_resources = list(deps)
+            
+            self.need_resources = []
+            for i in list(deps):
+                self.need_resources.append(
+                    [i, cn.get(i , 1)]
+                )
+                
 
         except Exception as e:
             log(f"error initializing event [{e}]")

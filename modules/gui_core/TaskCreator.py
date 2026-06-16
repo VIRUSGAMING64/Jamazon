@@ -62,34 +62,43 @@ class TaskCreator(CTkToplevel):
         """Buttons."""
         self.b_add = CTkButton(self, text="Add this event", command=self.add_event)
         self.b_add.pack()
-        self.b_add.place(x=70, y=self.y_size - 30)
+        self.b_add.place(x=120, y=self.y_size - 30)
 
 
         self.adjust_button = CTkButton(self, text="Adjust date", command=self.adjust)
         self.adjust_button.pack()
-        self.adjust_button.place(x=70, y=self.y_size - 60)
+        self.adjust_button.place(x=120, y=self.y_size - 60)
 
         """Notes textbox"""
         self.notes = CTkTextbox(self,height = self.y_size,width =200)
         self.notes.insert("1.0","Task notes")
         self.notes.pack()
         self.notes.place(x = 280, y = 0)
-
+        self.corrupt = False
 
     def _get_deps(self, selected):
         deps = []
         print(selected, calendar.available_tasks)
 
         res = calendar.available_tasks[selected]["resources"]
+        cnt = {}
+
         for t in res:
             deps.append(t["name"])
-        
+            cnt[t["name"]] = t["count"]
+
         A = set()
-        for i in deps:
-            A.add(i)
-            for x in get_sources_dependency(calendar.resources, i):
-                A.add(x)
-        
+        try:
+            for i in deps:
+                A.add(i)
+                for x in get_sources_dependency(calendar.resources, i):
+                    A.add(x)
+        except KeyError as e:
+            log(e)
+            self.corrupt = True
+            Messagebox(self, message=f"Posible corrupcion en las tareas guardadas, la tarea necesita de un recuso no existente ({e.args})!!!")
+            return []
+
         print(A)
         deps = []
         for i in A:
@@ -97,15 +106,20 @@ class TaskCreator(CTkToplevel):
         print(deps)
         org = self.dependency_label.cget("text").split(':')[0]
         ne = ""
+        tmp = []
         for i in deps:
-            ne += f"- {i}\n"
+            ne += f"- {i} : {cnt.get(i,1)}\n"
+            tmp.append([i, cnt.get(i, 1)])
 
         self.dependency_label.configure(text=org + ":\n" + ne)
-        return deps
+        print("tmp: ", tmp)
+        return tmp
 
     def __suggest(self, l: int, r: int, resources: list) -> list:
         print("running...")
         L = calendar.suggest_brute_lr(l, r, resources)
+        if isinstance(L, str):
+            return -1,L
         print("found...")
         R = L + datetime.timedelta(minutes=r - l)
         return L, R
@@ -138,7 +152,18 @@ class TaskCreator(CTkToplevel):
             return
         
         res = self._get_deps(selected_task)
+        
+        if self.corrupt:
+            return False
+        
         l,r = self.__suggest(tominute(begin), tominute(end), res)
+        if (l == -1):
+            Messagebox(
+                self,200,200,"No resources",
+                f"La tarea requiere mas recursos que la cantidad instalada total, agregue mas recursos ({r})"
+            )
+            return
+
         l   = str(l.isoformat().replace('T', ' AT ').split(".")[0])
         r   = str(r.isoformat().replace('T', ' AT ').split(".")[0])
         l   = l.rsplit(":",1)[0]
@@ -180,7 +205,7 @@ class TaskCreator(CTkToplevel):
     
         if valid == 0:
             self.show_invalid("date")
-            return False
+            return False,None
 
         task_name = self.tasks.get()
         if (task_name == "Select a task"):
@@ -188,9 +213,12 @@ class TaskCreator(CTkToplevel):
                 self,200,200,"Not selected",
                 "Select one task"
             )
-            return
+            return False,None
         
         res = self._get_deps(task_name)
+        if self.corrupt:
+            return False, None
+        
         new = event(
             {
                 "name": task_name,
@@ -203,17 +231,17 @@ class TaskCreator(CTkToplevel):
                 "notes": notes
             }
         )
-        
+    
         if new.start >= new.end:
             message = Messagebox(
                 height=100,
                 width=100,
                 title="ERROR",
-                message="The end of the task is equal to the beginning!",
+                message="The end of the task is greater or equal to the beginning! (l >= r)",
                 option_1="Accept"
             )
             message.get()
-            return False
+            return False,None
         
         added,t_res = calendar.add_event(new)
         calendar.save_json_data()

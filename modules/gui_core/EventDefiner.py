@@ -22,7 +22,6 @@ class EventCreator(CTkToplevel):
     def GetCounts(self, resource):
         print(resource)
         return 1
-    
 
     def create_event(self,name:str,resources:list):
         if name in calendar.available_tasks:
@@ -71,8 +70,8 @@ class EventCreator(CTkToplevel):
             return
 
         need = []
-        for res in res_names:
-            need.append([res,self.GetCounts(res)])
+        for res in set(res_names):
+            need.append([res,res_names.count(res)])
 
         if False == self.create_event(event_name, need):
             return

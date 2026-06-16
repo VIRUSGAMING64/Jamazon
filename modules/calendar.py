@@ -14,6 +14,7 @@ class Calendar(BasicHandler):
             self.inqueue:dict[event,bool]   = {} 
             self.actives_events_path        = actives_ev
             self.used_res_path              = used_res
+            self.invalid_permanent          = False
             self.load_used_resources(f"{SAVE_ROOT}/{used_res}")
             ex                              = self._load_json(f"{SAVE_ROOT}/{actives_ev}")
             self.events                     = []
@@ -59,38 +60,43 @@ class Calendar(BasicHandler):
             print("maybe you don't have access to this file: ",e)
 
 
-
-    def gen_tree(self, res , l , length):    
+    #! cnt cantidad que necesita
+    def gen_tree(self, res, cnt , l , length):    
         id = 0
         a2 = [l,l + length, l+1,l + length+1]
         di = {}
         for i in self.events:
-            if not res in i.need_resources:
-                continue
-            a2.append(i.end)
-            a2.append(i.start)
-            a2.append(i.start+1)
-            a2.append(i.end + 1)
-    
+            for j ,c in i.need_resources:
+                if(j == res):
+                    a2.append(i.end)
+                    a2.append(i.start)
+                    a2.append(i.start+1)
+                    a2.append(i.end + 1)
+        
         a2.sort()
         for x in a2:
             if di.get(x,-1) == -1:
                 di[x] = id
                 id += 1
+                
         tree = SegTree([0] * (id + 10) )
         
         for x in self.events:
-            if not res in x.need_resources:
-                continue
-            start_idx = di[x.start]
-            end_idx = di[x.end]
-            tree.update(start_idx, end_idx, 1)
+            for i ,c in x.need_resources:
+                if(i == res):
+                    start_idx = di[x.start]
+                    end_idx = di[x.end]
+                    tree.update(start_idx, end_idx, c)
+                    break
+
         return di,tree
 
-
-
-    def check_available(self, new_res: str, start: int, end: int, di , tree):
+    def check_available(self, new_res: str, cant_new:int, start: int, end: int, di , tree):
+        self.invalid_permanent = False
         if not (new_res in self.used_resources.keys()):
+            if (self.resources[new_res]["count"] < cant_new):
+                self.invalid_permanent = True
+                return False, new_res
             return True, None
         try:
             if start not in di or end not in di:
@@ -98,8 +104,9 @@ class Calendar(BasicHandler):
                 return True , None
             l = di[start]
             r = di[end]
-            mx = tree.query(l,r)
-            if mx >= self.resources[new_res]["count"]:
+            mx = tree.query(l,r) + cant_new
+            print(mx, self.resources[new_res]["count"])
+            if mx > self.resources[new_res]["count"]:
                 return False,new_res
         except Exception as e:
             log("error checking available resource: ", str(e))
@@ -112,18 +119,19 @@ class Calendar(BasicHandler):
         self.sort()
         try:
             if check == True:
-                for res in new.need_resources:
-                    di,tree = self.gen_tree(res,new.start,new.end - new.start)
-                    av, t_res = self.check_available(res, new.start, new.end, di, tree)
+                new_need = new.need_resources
+                for res,count in new_need:
+                    di,tree = self.gen_tree(res, count,new.start,new.end - new.start)
+                    av, t_res = self.check_available(res, count, new.start, new.end, di, tree)
                     if av == False:
                         return av,t_res
             
             self.events.append(new)
             self.inqueue[new] = True
 
-            for res in new.need_resources:     
-                add_to_dict(self.used_resources,[res,new.start,1])        
-                add_to_dict(self.used_resources,[res,new.end,-1])
+            for res,cnt in new.need_resources:     
+                add_to_dict(self.used_resources,[res,new.start,cnt])
+                add_to_dict(self.used_resources,[res,new.end,-cnt])
         
             return True,None
         
@@ -175,21 +183,20 @@ class Calendar(BasicHandler):
         for res in temp:
             self.used_resources[res] = temp[res]
 
-
-
     def suggest_brute_lr(self, L: int, R: int, resources: list):
         length = (R-L)
-        print(type(L),type(R))
         l = tominute(datetime.datetime.now())
         start = datetime.datetime.now()
         self.sort()        
         while True:
             av = True
-            for res in resources:
-                di, tree = self.gen_tree(res, l, length)
-                av , t_res= self.check_available(res, l, l + length, di, tree)
+            for res,cnt in resources: #! aqui todavia no uso cnt
+                di, tree = self.gen_tree(res , cnt, l, length)
+                av , t_res= self.check_available(res, cnt, l, l + length, di, tree)
                 if not av:
-                    av = False
+                    if self.invalid_permanent:
+                        return t_res
+                    
                     mx: int = 10**300
                     for x in self.list_events():
                         if (l < x.end):
@@ -200,7 +207,6 @@ class Calendar(BasicHandler):
                         
                     ant: int = l
                     l: int = mx
-                    print(mx,start.isoformat())
                     dif: int = l - ant
                     dr = datetime.timedelta(minutes=dif)
                     start += dr

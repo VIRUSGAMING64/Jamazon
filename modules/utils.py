@@ -98,7 +98,9 @@ def parse_event_option(option: str):
 
 def format_event_info(ev) -> str:
     """convert an event to information string"""
-    resources = ', '.join(ev.need_resources) if ev.need_resources else "-"
+    resources = "\n"
+    for e,c in ev.need_resources:
+        resources += f"- {e}, {c}\n"
     lines = [
         "INFORMATION:",
         f"Task name: {ev.task}",

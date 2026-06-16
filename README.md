@@ -102,16 +102,6 @@ Jamazon/
 └── tests/              # 🧪 Unit tests
 ```
 
-## 🤝 Contribution
-
-Contributions are welcome! If you want to improve Jamazon:
-
-1. Fork the project.
-2. Create a branch for your new feature (`git checkout -b feature/new-feature`).
-3. Make your changes and commit (`git commit -m "Add new feature"`).
-4. Push to the branch (`git push origin feature/new-feature`).
-5. Open a Pull Request.
-
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=VIRUSGAMING64/Jamazon&type=date&legend=top-left)](https://www.star-history.com/#VIRUSGAMING64/Jamazon&type=date&legend=top-left)

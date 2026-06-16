@@ -32,11 +32,7 @@
             "count": 1
          },
          {
-            "name": "horno_profesional",
-            "count": 1
-         },
-         {
-            "name": "freidora_industrial",
+            "name": "horno",
             "count": 1
          },
          {
@@ -48,7 +44,7 @@
             "count": 3
          },
          {
-            "name": "mesa_preparacion",
+            "name": "mesa",
             "count": 1
          }
       ],
@@ -72,10 +68,6 @@
             "count": 1
          },
          {
-            "name": "bebidas_surtidas",
-            "count": 2
-         },
-         {
             "name": "cajas_envio",
             "count": 1
          }
@@ -94,15 +86,11 @@
    "entrega_con_furgoneta": {
       "resources": [
          {
-            "name": "repartidor",
-            "count": 1
-         },
-         {
             "name": "furgoneta",
             "count": 1
          },
          {
-            "name": "sistema_gps",
+            "name": "repartidor",
             "count": 1
          },
          {
@@ -162,61 +150,6 @@
          "kit_herramientas",
          "repartidor",
          "uniforme_chef",
-         "uniforme_repartidor"
-      ]
-   },
-   "contabilidad_y_caja": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "ordenador_gerente",
-            "count": 1
-         },
-         {
-            "name": "caja_registradora",
-            "count": 1
-         },
-         {
-            "name": "sistema_pedidos",
-            "count": 1
-         }
-      ],
-      "without": [
-         "ayudante_cocina",
-         "cocinero",
-         "personal_limpieza",
-         "repartidor"
-      ]
-   },
-   "formacion_seguridad": {
-      "resources": [
-         {
-            "name": "gerente",
-            "count": 1
-         },
-         {
-            "name": "cocinero",
-            "count": 1
-         },
-         {
-            "name": "zona_descanso",
-            "count": 1
-         },
-         {
-            "name": "carnet_manipulador",
-            "count": 1
-         }
-      ],
-      "without": [
-         "ayudante_cocina",
-         "cocinero",
-         "gerente",
-         "personal_limpieza",
-         "repartidor",
-         "uniforme_limpieza",
          "uniforme_repartidor"
       ]
    },
@@ -296,6 +229,31 @@
          {
             "name": "moto",
             "count": 1
+         }
+      ],
+      "without": [
+         "guantes_cocina",
+         "personal_limpieza"
+      ]
+   },
+   "Azotar repartidores": {
+      "resources": [
+         {
+            "name": "repartidor",
+            "count": 1
+         }
+      ],
+      "without": []
+   },
+   "Preparar Picadillo": {
+      "resources": [
+         {
+            "name": "cocinero",
+            "count": 1
+         },
+         {
+            "name": "ingredientes_frescos",
+            "count": 10
          }
       ],
       "without": []

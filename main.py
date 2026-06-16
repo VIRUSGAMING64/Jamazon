@@ -20,7 +20,7 @@ class app(CTk):
         self.size_x = 512
         self.size_y = 256
         self.geometry(f"{self.size_x}x{self.size_y}")
-
+    
         self.ButtonTaskCreator = CTkButton(self,text="Create new task",command=self.create_task)
         self.ButtonTaskCreator.pack()
         self.ButtonTaskCreator.place(x=(self.size_x - self.ButtonTaskCreator._current_width)//2)
@@ -125,9 +125,9 @@ class app(CTk):
         sys.exit(0)
 
 
-
-print("removing olds events")
-calendar.remove_old_events()
-APP = app()
-APP.resizable(False,False)
-APP.mainloop()
+if __name__ == "__main__":
+    print("removing olds events")
+    calendar.remove_old_events()
+    APP = app()
+    APP.resizable(False,False)
+    APP.mainloop()

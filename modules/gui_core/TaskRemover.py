@@ -10,12 +10,12 @@ class TaskRemover(CTkToplevel):
     def __init__(self):
         super().__init__()
         self.after(100, self.lift)
-        self.x_size = 400
+        self.x_size = 550
         self.y_size = 400
 
         self.title("Task Remover")
         self.geometry(f"{self.x_size}x{self.y_size}")
-        self.resizable(False,False)
+        self.resizable(True,False)
         
         self.eventos = CTkComboBox(self,200,command=self.update_label)
         self.eventos.pack()
