@@ -42,7 +42,6 @@ class TaskRemover(CTkToplevel):
         self.close = True
         self.destroy()
 
-
     def run_updater(self):        
         self.update_thread.start()
 

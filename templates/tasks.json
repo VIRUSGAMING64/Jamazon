@@ -257,5 +257,14 @@
          }
       ],
       "without": []
+   },
+   "lavar platos": {
+      "resources": [
+         {
+            "name": "platos",
+            "count": 5
+         }
+      ],
+      "without": []
    }
 }
